@@ -1,11 +1,22 @@
 const getState = ({ getStore, setStore }) => {
 	return {
 		store: {
-			//Your data structures, A.K.A Entities
+			users: [],
+			contacto: []
 		},
 		actions: {
-			//(Arrow) Functions that update the Store
-			// Remember to use the scope: scope.state.store & scope.setState()
+			getUsers: function() {
+				fetch("https://playground.4geeks.com/apis/fake/contact/agenda/DiegoAvila")
+					.then(response => response.json())
+					.then(data => setStore({ contacto: data }))
+					.catch(error => console.log(error));
+			},
+			getContacto: function() {
+				// fetch('https://playground.4geeks.com/apis/fake/contact/agenda/{agenda_slug}')
+				// .then((response)=>response.json())
+				// .then((data)=>setContenido(data))
+				// .catch((error)=>console.log(error))
+			}
 		}
 	};
 };

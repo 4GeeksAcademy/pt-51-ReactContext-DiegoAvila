@@ -17,7 +17,14 @@ export const Contacts = () => {
 	console.log(store.contacto);
 
 	const listaContacto = store.contacto.map((elemento, index) => (
-		<ContactCard key="index" onDelete={() => setState({ showModal: true })} />
+		<ContactCard
+			key="index"
+			full_name={elemento.full_name}
+			email={elemento.email}
+			address={elemento.address}
+			phone={elemento.phone}
+			onDelete={() => setState({ showModal: true })}
+		/>
 	));
 
 	return (

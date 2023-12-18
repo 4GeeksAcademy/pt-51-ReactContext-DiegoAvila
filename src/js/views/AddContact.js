@@ -1,7 +1,18 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 export const AddContact = () => {
+	const [entrada, setEntrada] = useState([])
+	const [full_name, setFull_name] = useState([]);
+	const [email, setEmail] = useState([]);
+	const [phone, setPhone] = useState([]);
+	const [Address, setAddress] = useState([]);
+	console.log(full_name);
+
+	function capturarEntrada(event) {
+		setEntrada(event.target.value);
+	}
+
 	return (
 		<div className="container">
 			<div>
@@ -9,7 +20,12 @@ export const AddContact = () => {
 				<form>
 					<div className="form-group">
 						<label>Full Name</label>
-						<input type="text" className="form-control" placeholder="Full Name" />
+						<input
+							type="text"
+							className="form-control"
+							placeholder="Full Name"
+							onChange={capturarEntrada(setFull_name)}
+						/>
 					</div>
 					<div className="form-group">
 						<label>Email</label>

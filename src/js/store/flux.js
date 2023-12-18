@@ -1,21 +1,27 @@
 const getState = ({ getStore, setStore }) => {
 	return {
 		store: {
-			users: [],
-			contacto: []
+			contacto: [],
+			contenidoCard: []
 		},
 		actions: {
 			getUsers: function() {
 				fetch("https://playground.4geeks.com/apis/fake/contact/agenda/DiegoAvila")
 					.then(response => response.json())
-					.then(data => setStore({ contacto: data }))
+					.then(data => setStore({ contenidoCard: data }))
 					.catch(error => console.log(error));
 			},
-			getContacto: function() {
-				// fetch('https://playground.4geeks.com/apis/fake/contact/agenda/{agenda_slug}')
-				// .then((response)=>response.json())
-				// .then((data)=>setContenido(data))
-				// .catch((error)=>console.log(error))
+			crearContacto: function(enviarContacto) {
+				fetch("https://playground.4geeks.com/apis/fake/contact", {
+					method: "POST",
+					body: JSON.stringify([]),
+					headers: { "Content-Type": "application/json" }
+				})
+					.then(response => {
+						response.json();
+					})
+					.then(data => contacto(data))
+					.catch(error => console.log(error));
 			}
 		}
 	};

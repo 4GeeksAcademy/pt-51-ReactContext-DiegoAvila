@@ -14,11 +14,10 @@ export const Contacts = () => {
 	useEffect(() => {
 		actions.getUsers();
 	}, []);
-	console.log(store.contacto);
 
-	const listaContacto = store.contacto.map((elemento, index) => (
+	const listaContacto = store.contenidoCard.map((elemento, index) => (
 		<ContactCard
-			key="index"
+			key={index}
 			full_name={elemento.full_name}
 			email={elemento.email}
 			address={elemento.address}

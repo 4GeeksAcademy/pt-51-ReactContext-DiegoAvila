@@ -1,4 +1,4 @@
-const getState = ({ getStore, setStore }) => {
+const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			contacto: [],
@@ -39,7 +39,9 @@ const getState = ({ getStore, setStore }) => {
 					.then(response => {
 						console.log(response);
 						if (response.status === 201) {
-							location.reload();
+							getActions().getUsers();
+							// this.getUsers()
+							// location.reload();
 						}
 						return response.json();
 					})

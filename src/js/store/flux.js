@@ -11,16 +11,39 @@ const getState = ({ getStore, setStore }) => {
 					.then(data => setStore({ contenidoCard: data }))
 					.catch(error => console.log(error));
 			},
-			crearContacto: function(enviarContacto) {
+			crearContacto: function(full_name, email, phone, address) {
+				console.log(full_name, email, phone, address);
+				const agenda_slug = "DiegoAvila";
 				fetch("https://playground.4geeks.com/apis/fake/contact", {
 					method: "POST",
-					body: JSON.stringify([]),
+					body: JSON.stringify({
+						full_name,
+						email,
+						agenda_slug,
+						address,
+						phone
+					}),
 					headers: { "Content-Type": "application/json" }
 				})
 					.then(response => {
 						response.json();
 					})
-					.then(data => contacto(data))
+					.then(data => data)
+					.catch(error => console.log(error));
+			},
+			eliminarContacto: function(id) {
+				console.log(id);
+				fetch("https://playground.4geeks.com/apis/fake/contact/" + id, {
+					method: "DELETE"
+				})
+					.then(response => {
+						console.log(response);
+						if (response.status === 201) {
+							location.reload();
+						}
+						return response.json();
+					})
+					.then(data => console.log(data))
 					.catch(error => console.log(error));
 			}
 		}

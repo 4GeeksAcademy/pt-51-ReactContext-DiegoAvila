@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { Context } from "../store/appContext.js";
 import { Link } from "react-router-dom";
 
 export const AddContact = () => {
@@ -19,15 +20,9 @@ export const AddContact = () => {
 	function capturarAddress(event) {
 		setAddress(event.target.value);
 	}
-	function enviarContacto() {
-		// let card = {
-		// 		'full_name : ${full_name}',
-		// 		"email: ${email}",
-		// 		"agenda_slug: DiegoAvila",
-		// 		"address: ${address}",
-		// 		"phone: ${phone}"
-		// }
-		// return card;
+	function enviarContacto(full_name, email, Address, phone) {
+		console.log(full_name, email, Address, phone);
+		actions.crearContacto(full_name, email, Address, phone);
 	}
 
 	const { store, actions } = useContext(Context);
@@ -36,7 +31,11 @@ export const AddContact = () => {
 		<div className="container">
 			<div>
 				<h1 className="text-center mt-5">Add a new contact</h1>
-				<form onSubmit={enviarContacto}>
+				<form
+					// onSubmit={event => {
+					// 	event.preventDefault();
+					// 	enviarContacto(full_name, email, Address, phone);}}
+					onSubmit={() => enviarContacto(full_name, email, Address, phone)}>
 					<div className="form-group">
 						<label>Full Name</label>
 						<input
@@ -73,7 +72,7 @@ export const AddContact = () => {
 							onChange={capturarAddress}
 						/>
 					</div>
-					<button type="button" className="btn btn-primary form-control">
+					<button type="submit" className="btn btn-primary form-control">
 						save
 					</button>
 					<Link className="mt-3 w-100 text-center" to="/">
